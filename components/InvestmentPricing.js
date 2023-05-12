@@ -8,7 +8,7 @@ const InvestmentPricing = () => {
     <>
       <p className="text-2xl font-semibold mb-3">Documents</p>
       <div className="flex justify-between items-center border border-gray-300 py-4 px-5">
-        <div className="text-sm">CosIQ.zip</div>
+        <a href="https://api.pepcorns.com/clientassets/icon1677255822062.zip" className="text-sm hover:cursor-pointer hover:text-[#0412bd]">CosIQ.zip</a>
         <div>
           <Image
             src={cloudDown2}

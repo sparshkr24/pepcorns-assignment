@@ -19,7 +19,7 @@ const Pitch = () => {
     {/* header */}
       <div id="header" className='flex justify-between items-center'>
         <div className='text-2xl font-semibold'>Deck info</div>
-        <button className='bg-[#0412bd] text-white text-sm py-1.5 px-3'> <Image src={cloudDown} className='inline mr-1' alt="downloadSVG" width={20} /> CosIQ_pitch.pdf</button>
+        <a href="https://api.pepcorns.com/clientassets/icon1677255746699.pdf" className='bg-[#0412bd] text-white text-sm py-1.5 px-3'> <Image src={cloudDown} className='inline mr-1' alt="downloadSVG" width={20} /> CosIQ_pitch.pdf</a>
       </div>
       <div id="pitchSlides" className='mb-8'>
         <Image className='rounded-2xl pt-8' src={pitch1} alt='pitchSlide'/>
