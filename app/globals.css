@@ -16,7 +16,7 @@
   }
 }
 
-/* body {
+body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -24,13 +24,14 @@
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-} */ */
+} */
+
 
 .dropbtn {
   background-color: black;
   color: white;
   padding: 0.625rem 1.25rem ;
-  font-size: 0.92rem;
+  font-size: 1rem;
   border: none;
 }
 
