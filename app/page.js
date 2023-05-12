@@ -1,113 +1,104 @@
-import Image from 'next/image'
+"use client";
 
+import Image from "next/image";
+
+import cosIQ from "../assets/cosIQ.jpg";
+
+
+import { useState } from "react";
+import Pitch from "@/components/Pitch";
+import Details from "@/components/Details";
+import Discussion from "@/components/Discussion";
+import Updates from "@/components/Updates";
+import InvestmentPricing from "@/components/InvestmentPricing";
+import Navbar from "@/components/Navbar";
+import ProductIntro from "@/components/ProductIntro";
+import Footer from "@/components/Footer";
+// 3b82f680
 export default function Home() {
+
+  const [tab, setTab] = useState(1)
+  const handleTab = (tabValue)=>{
+    setTab(tabValue)
+  }
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <div id="Full-page" className="bg-[#d0d8e71f] w-full overflow-hidden">
+        {/* navbar */}
+        <Navbar/>
+        <div id="main-content" className="px-2 md:px-28 md:py-20">
+          {/* back */}
+          <div
+            id="back"
+            className="hover:cursor-pointer pt-8 flex justify-start items-center text-gray-600"
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+              className="inline"
+              width={10}
+            >
+              <path
+                fill="#808080"
+                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+              />
+            </svg>
+            <div className="pl-3 text-sm">Back</div>
+          </div>
+          {/* cosIQ */}
+          <div
+            id="cosIQ"
+            className="flex justify-between items-center pt-10 pb-4"
+          >
+            <div className="flex justify-start items-center">
+              <Image src={cosIQ} className="inline" alt="cosIQ" width={48} />
+              <div className="inline pl-6">
+                <p className="inline text-3xl font-bold">CosIQ</p>
+                <p className="text-gray-600">Delhi,</p>
+              </div>
+            </div>
+            <div className="">
+              <button className="inline ml-2 border border-[#2829c1] text-[#2829c1] py-2 px-4">
+                Save
+              </button>
+              <button className="inline ml-2 border border-[#2829c1] text-[#2829c1] py-2 px-4">
+                Share
+              </button>
+            </div>
+          </div>
+          {/* gray line */}
+          <div id="grayLine" className="bg-gray-300 w-full h-px"></div>
+
+          {/* Product Intro */}
+          <ProductIntro/>
+
+          {/* tabs */}
+          <div className="flex justify-start items-center mt-16 py-3 shadow-sm bg-[#ecebd51a] overflow-x-auto">
+            <button onClick={()=> handleTab(1)} className={`mr-3 border rounded-3xl px-4 py-2 ${tab==1? "bg-black text-white": "border-black"}`}>Pitch</button>
+            <button onClick={()=> handleTab(2)} className={`mr-3 border rounded-3xl px-4 py-2 ${tab==2? "bg-black text-white": "border-black"}`}>Details</button>
+            <button onClick={()=> handleTab(3)} className={`mr-3 border rounded-3xl px-4 py-2 ${tab==3? "bg-black text-white": "border-black"}`}>Discussion</button>
+            <button onClick={()=> handleTab(4)} className={`mr-3 border rounded-3xl px-4 py-2 ${tab==4? "bg-black text-white": "border-black"}`}>Updates</button>
+          </div>
+
+          {/* full content */}
+          <div id="full-content" className="flex justify-between my-9`">
+            {/* pitch slides */}
+            <div className="border w-full lg:w-2/3 p-4">{tab==1?<Pitch/>: (tab==2? <Details/>: (tab==3? <Discussion/>: (tab==4? <Updates/>: <Pitch/>)))}</div>
+
+            {/* investmentPlans */}
+            <div id="investmentPlans" className="w-1/3 hidden lg:block">
+              <div id="grayLine" className="bg-gray-200 w-full h-px"></div> 
+              <div className="p-4"> <InvestmentPricing/> </div>
+              
+            </div>
+          </div>
+        </div>
+
+        <div id="footer">
+          <Footer/>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </>
+  );
 }
