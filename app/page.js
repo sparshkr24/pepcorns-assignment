@@ -4,7 +4,6 @@ import Image from "next/image";
 
 import cosIQ from "../assets/cosIQ.jpg";
 
-
 import { useState } from "react";
 import Pitch from "@/components/Pitch";
 import Details from "@/components/Details";
@@ -14,19 +13,24 @@ import InvestmentPricing from "@/components/InvestmentPricing";
 import Navbar from "@/components/Navbar";
 import ProductIntro from "@/components/ProductIntro";
 import Footer from "@/components/Footer";
+import cross2 from '../assets/cross2.svg'
 // 3b82f680
 export default function Home() {
+  const [tab, setTab] = useState(1);
+  const [invest, setInvest] = useState(false);
+  const handleTab = (tabValue) => {
+    setTab(tabValue);
+  };
 
-  const [tab, setTab] = useState(1)
-  const handleTab = (tabValue)=>{
-    setTab(tabValue)
-  }
+  const toggleInvest = () => {
+    setInvest(!invest);
+  };
 
   return (
     <>
       <div id="Full-page" className="bg-[#d0d8e71f] w-full overflow-hidden">
         {/* navbar */}
-        <Navbar/>
+        <Navbar />
         <div id="main-content" className="px-2 md:px-28 md:py-20">
           {/* back */}
           <div
@@ -54,8 +58,8 @@ export default function Home() {
             <div className="flex justify-start items-center">
               <Image src={cosIQ} className="inline" alt="cosIQ" width={48} />
               <div className="inline pl-6">
-                <p className="inline text-3xl font-bold">CosIQ</p>
-                <p className="text-gray-600">Delhi,</p>
+                <p className="inline md:text-3xl font-bold">CosIQ</p>
+                <p className="text-gray-600 text-sm md:text-md">Delhi,</p>
               </div>
             </div>
             <div className="">
@@ -71,32 +75,97 @@ export default function Home() {
           <div id="grayLine" className="bg-gray-300 w-full h-px"></div>
 
           {/* Product Intro */}
-          <ProductIntro/>
+          <ProductIntro />
 
           {/* tabs */}
           <div className="flex justify-start items-center mt-16 py-3 shadow-sm bg-[#ecebd51a] overflow-x-auto">
-            <button onClick={()=> handleTab(1)} className={`mr-3 border rounded-3xl px-4 py-2 ${tab==1? "bg-black text-white": "border-black"}`}>Pitch</button>
-            <button onClick={()=> handleTab(2)} className={`mr-3 border rounded-3xl px-4 py-2 ${tab==2? "bg-black text-white": "border-black"}`}>Details</button>
-            <button onClick={()=> handleTab(3)} className={`mr-3 border rounded-3xl px-4 py-2 ${tab==3? "bg-black text-white": "border-black"}`}>Discussion</button>
-            <button onClick={()=> handleTab(4)} className={`mr-3 border rounded-3xl px-4 py-2 ${tab==4? "bg-black text-white": "border-black"}`}>Updates</button>
+            <button
+              onClick={() => handleTab(1)}
+              className={`text-xs sm:text-md mr-3 border rounded-3xl px-4 py-2 ${
+                tab == 1 ? "bg-black text-white" : "border-black"
+              }`}
+            >
+              Pitch
+            </button>
+            <button
+              onClick={() => handleTab(2)}
+              className={`text-xs sm:text-md mr-3 border rounded-3xl px-4 py-2 ${
+                tab == 2 ? "bg-black text-white" : "border-black"
+              }`}
+            >
+              Details
+            </button>
+            <button
+              onClick={() => handleTab(3)}
+              className={`text-xs sm:text-md mr-3 border rounded-3xl px-4 py-2 ${
+                tab == 3 ? "bg-black text-white" : "border-black"
+              }`}
+            >
+              Discussion
+            </button>
+            <button
+              onClick={() => handleTab(4)}
+              className={`text-xs sm:text-md mr-3 border rounded-3xl px-4 py-2 ${
+                tab == 4 ? "bg-black text-white" : "border-black"
+              }`}
+            >
+              Updates
+            </button>
+            <button
+              onClick={toggleInvest}
+              className={`text-xs sm:hidden mr-3 px-4 py-2 bg-[#2829c1] text-white`}
+            >
+              Invest
+            </button>
+
+            {/* investCards */}
+            <div
+              className={`border border-black shadow-lg overflow-y-auto rounded-2xl fixed m-3 top-0 left-0 w-full h-full bg-white transition-transform duration-300 ${
+                invest ? "translate-y-0 opacity-100 ease-out" : "-translate-y-full ease-in opacity-0"
+              }`}
+            >
+              <div className="p-4">
+                <div className="flex justify-between items-center">
+                  <p className="font-medium text-lg">Modal Title</p>
+                  <Image src={cross2} onClick={toggleInvest} alt="cross" width={16} height={16}/>
+                </div>
+                <div className="h-px w-full bg-gray-300 mt-4"></div>
+                <InvestmentPricing/>
+              </div>
+              
+            </div>
           </div>
 
           {/* full content */}
           <div id="full-content" className="flex justify-between my-9`">
             {/* pitch slides */}
-            <div className="border w-full lg:w-2/3 p-4">{tab==1?<Pitch/>: (tab==2? <Details/>: (tab==3? <Discussion/>: (tab==4? <Updates/>: <Pitch/>)))}</div>
+            <div className="border w-full lg:w-2/3 p-4">
+              {tab == 1 ? (
+                <Pitch />
+              ) : tab == 2 ? (
+                <Details />
+              ) : tab == 3 ? (
+                <Discussion />
+              ) : tab == 4 ? (
+                <Updates />
+              ) : (
+                <Pitch />
+              )}
+            </div>
 
             {/* investmentPlans */}
             <div id="investmentPlans" className="w-1/3 hidden lg:block">
-              <div id="grayLine" className="bg-gray-200 w-full h-px"></div> 
-              <div className="p-4"> <InvestmentPricing/> </div>
-              
+              <div id="grayLine" className="bg-gray-200 w-full h-px"></div>
+              <div className="p-4">
+                {" "}
+                <InvestmentPricing />{" "}
+              </div>
             </div>
           </div>
         </div>
 
         <div id="footer">
-          <Footer/>
+          <Footer />
         </div>
       </div>
     </>

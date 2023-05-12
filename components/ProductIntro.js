@@ -18,7 +18,7 @@ const ProductIntro = () => {
               </div>
               <div className="inline font-medium text-xs pl-2"># FMCG</div>
 
-              <div className="pt-6 pb-3 font-bold text-xl font-sans tracking-wide">
+              <div className="pt-6 pb-3 font-bold md:text-xl font-sans tracking-wide">
                 Molecular skincare brand focussed on safe & visible results
               </div>
               <div className='text-sm'>
@@ -54,9 +54,9 @@ const ProductIntro = () => {
                 <Image src={productImg} alt="product-img" />
               </div>
               {/* Right - content box */}
-              <div className="lg:w-1/3 pl-4">
+              <div className="lg:w-1/3 md:pl-4">
               <div id="grayLine" className="bg-gray-300 w-full h-px"></div>
-                <div className="py-8 pl-12">
+                <div className="py-8 px-4 sm:pl-12">
                   <div>
                     <p className="font-semibold text-gray-700 text-lg pb-1">₹855000</p>
                     <p className="text-xs text-gray-600 font-medium pb-5">34.2 % of minimum goal raised</p>
@@ -74,7 +74,7 @@ const ProductIntro = () => {
                   <button id="Invest" className="bg-black text-white text-medium w-full py-2 px-4 mb-2">Login To Invest</button>
                   <div className="text-sm text-center text-gray-500 font-medium pb-5">₹ 1000 Minimum Investment</div>
                 </div>
-                <div id="grayLine" className="bg-gray-300 w-full h-px mt-24"></div>
+                <div id="grayLine" className="hidden lg:block bg-gray-300 w-full h-px mt-24"></div>
               </div>
             </div>
 
